@@ -2,3 +2,41 @@
     margin: 0px;
     box-sizing: border-box;
 }
+
+body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column
+}
+
+.top-bar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    background-color: #03a9f4;
+}
+
+.page-container {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
+
+.left-bar {
+    overflow-y: auto;
+    background-color: #eeeeee;
+    width: 15%;
+    height: 100%;
+}
+
+.content-bar {
+    height: 100%;
+    width: 90%;
+}
+
+#second-title {
+    width: 40%;
+    margin: 25px;
+}
