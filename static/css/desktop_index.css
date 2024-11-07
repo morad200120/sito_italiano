@@ -71,5 +71,9 @@ body {
 
 #aggiungi_articoli {
     position: absolute;
-    right: 100px;
+    right: 60px;
+    top: 15px;
+    white-space: nowrap;
 }
+
+
