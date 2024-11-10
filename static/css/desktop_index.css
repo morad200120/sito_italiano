@@ -67,23 +67,35 @@ body {
 .menu-checkbox {
     width: 40px;
     height: 40px;
+    opacity: 0; /* Checkbox invisibile ma cliccabile */
     position: absolute;
-    opacity: 0;
+    z-index: 10; /* Assicurati che la checkbox sia sopra gli altri elementi */
 }
 
-input[class="menu-checkbox"]:checked ~ .top {
+input.menu-checkbox:checked ~ .top {
     transform: rotate(-45deg);
     transform-origin: right;
     top: -25px;
 }
 
-input[class="menu-checkbox"]:checked ~ .bottom {
+input.menu-checkbox:checked ~ .bottom {
     transform: rotate(45deg);
     transform-origin: right;
     top: 25px;
 }
 
-input[class="menu-checkbox"]:checked ~ .midle {
+input.menu-checkbox:checked ~ .midle {
     opacity: 0;
 }
 
+/* La label è usata per fare da pulsante visibile */
+label {
+    display: block;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(0, 0, 0, 0); /* In questo caso la label è invisibile */
+    position: absolute;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+}
