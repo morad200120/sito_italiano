@@ -43,3 +43,47 @@ body {
     width: 100%;
     height: 80%;
 }
+
+.menu {
+    gap: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 10px;
+    width: 60px;
+    height: 60px;
+}
+
+.menu span {
+    width: 40px;
+    height: 6px;
+    background: white;
+    border-radius: 10px;
+    transition: 0.3s ease;
+}
+
+.menu-checkbox {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    opacity: 0;
+}
+
+input[class="menu-checkbox"]:checked ~ .top {
+    transform: rotate(-45deg);
+    transform-origin: right;
+    top: -25px;
+}
+
+input[class="menu-checkbox"]:checked ~ .bottom {
+    transform: rotate(45deg);
+    transform-origin: right;
+    top: 25px;
+}
+
+input[class="menu-checkbox"]:checked ~ .midle {
+    opacity: 0;
+}
+
