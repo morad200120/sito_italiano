@@ -3,35 +3,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=, initial-scale=1.0">
     <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/css/desktop_index.css">
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="title-bar">
         <h1 id="title">
             GIORNALE 2D MATTEI
         </h1>
-        <div class="menu">
-            <input class="menu-checkbox" type="checkbox" id="menu-toggle">
-            <label for="menu-toggle"></label>
-            <span class="top"></span>
-            <span class="midle"></span>
-            <span class="bottom"></span>
-        </div>        
+
+        <div class="ham-menu" role="button" aria-label="Toggle menu">
+            <span class="1"></span>
+            <span class="2"></span>
+            <span class="3"></span>
+        </div>
     </div>
+
+    <div class="off-screen-menu">
+
+    </div>
+
     <div class="nav-bar">
-        <h2>
-            cronaca nera
-        </h2>
-        <h2>
-            sport
-        </h2>
-        <h2>
-            ecc
-        </h2>
+        <a href="">cronaca nera</a>
+        <a href="">sport</a>
+        <a href="">ecc</a>
     </div>
+
     <div class="article-container">
         
     </div>
+    <script src="/static/js/index.js"></script>
 </body>
 </html>
