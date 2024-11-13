@@ -10,7 +10,9 @@
 <body>
     <div class="title-bar">
         <h1 id="title">
-            GIORNALE 2D MATTEI
+            <a href="http://192.168.1.50:8080/">
+                GIORNALE 2D MATTEI
+            </a>
         </h1>
 
         <div class="ham-menu" role="button" aria-label="Toggle menu">
@@ -21,7 +23,11 @@
     </div>
 
     <div class="off-screen-menu">
-
+        <ul class="off-screen-menu-list">
+            <li><button id="aggiungi_articolo" onclick="window.location.href='{{ url_for('aggiungi_articolo') }}';">aggiungi articolo</button></li>
+            <li></li>
+            <li></li>
+        </ul>
     </div>
 
     <div class="nav-bar">

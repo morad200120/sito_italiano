@@ -31,15 +31,14 @@ def desktop_page():
 def mobile_page():
     return render_template("mobile_index.html")
 
-@app.route("/login_desktop")
+@app.route("/desktop_login")
 def desktop_login():
     return render_template("desktop_login.html")
 
-@app.route("/login_mobile")
+@app.route("/mobile_login")
 def mobile_login():
     return render_template("mobile_login.html")
 
 #-------------------------------------------------------------------------------
-
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=8080)
