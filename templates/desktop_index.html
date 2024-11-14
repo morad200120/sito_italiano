@@ -7,7 +7,20 @@
     <link rel="stylesheet" href="/static/css/desktop_index.css">
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
-<body>
+<body> 
+    <div class="input-box-container">
+        <p id="form-title">
+            Accedi
+        </p>
+        <div class="input-box">
+            <form action="/accedi" method="GET">
+                <div class="credential-container">
+                    <input type="text" id="username" name="username" placeholder="username" required>
+                    <input type="password" id="password" name="password" placeholder="password" required>
+                </div>
+            </form>
+        </div>
+    </div>
     <div class="title-bar">
         <h1 id="title">
             <a href="http://192.168.1.50:8080/">

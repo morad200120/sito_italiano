@@ -1,0 +1,60 @@
+* {
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+}
+
+.container {
+    width: 25%;
+    height: 50%;
+    border: solid 3px blueviolet;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.credential-container {
+    width: 400px;
+    height: 350px;
+    border: solid 2px rgb(19, 2, 34);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-radius: 15px;
+}
+
+#title {
+    position: relative;
+    bottom: 15px;
+    font-size: 30px;
+    font-family: "oswald", sans-serif;
+}
+
+.input-box input {
+    border-radius: 12px;
+    padding: 10px;
+    border: solid 1px blueviolet;
+    font-size: 16px;
+}
+
+.input-box {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    
+}
+
+
+

@@ -7,3 +7,12 @@ hamMenu.addEventListener("click", () => {
     console.log("Menu toggled"); // Per vedere se funziona
 });
 
+
+const addArticleButton = document.querySelector("#aggiungi-articolo")
+const inputBoxContainer = document.querySelector(".input-box-container")
+
+
+addArticleButton.addEventListener("click", () => {
+    inputBoxContainer.classList.toggle("active")
+})
+
