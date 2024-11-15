@@ -3,11 +3,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=, initial-scale=1.0">
     <title>Document</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/css/desktop_index.css">
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
-<body> 
+<body>
     <div class="input-box-container">
         <p id="form-title">
             Accedi
@@ -21,36 +20,38 @@
             </form>
         </div>
     </div>
-    <div class="title-bar">
-        <h1 id="title">
-            <a href="http://192.168.1.50:8080/">
-                GIORNALE 2D MATTEI
-            </a>
-        </h1>
-
-        <div class="ham-menu" role="button" aria-label="Toggle menu">
-            <span class="1"></span>
-            <span class="2"></span>
-            <span class="3"></span>
+    <div class="blur-container">
+        <div class="title-bar">
+            <h1 id="title">
+                <a href="http://192.168.1.50:8080/">
+                    GIORNALE 2D MATTEI
+                </a>
+            </h1>
+    
+            <div class="ham-menu" role="button" aria-label="Toggle menu">
+                <span class="1"></span>
+                <span class="2"></span>
+                <span class="3"></span>
+            </div>
         </div>
-    </div>
-
-    <div class="off-screen-menu">
-        <ul class="off-screen-menu-list">
-            <li><button id="aggiungi_articolo" onclick="window.location.href='{{ url_for('aggiungi_articolo') }}';">aggiungi articolo</button></li>
-            <li></li>
-            <li></li>
-        </ul>
-    </div>
-
-    <div class="nav-bar">
-        <a href="">cronaca nera</a>
-        <a href="">sport</a>
-        <a href="">ecc</a>
-    </div>
-
-    <div class="article-container">
-        
+    
+        <div class="off-screen-menu">
+            <ul class="off-screen-menu-list">
+                <li><button id="aggiungi-articolo">aggiungi_articolo</button></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+    
+        <div class="nav-bar">
+            <a href="">cronaca nera</a>
+            <a href="">sport</a>
+            <a href="">ecc</a>
+        </div>
+    
+        <div class="article-container">
+            
+        </div>
     </div>
     <script src="/static/js/index.js"></script>
 </body>
