@@ -9,14 +9,15 @@
 <body>
     <div class="input-box-container">
         <p id="form-title">
-            Accedi
+            Login
         </p>
         <div class="input-box">
-            <form action="/accedi" method="GET">
+            <form action="/login" method="POST"  id="login-form">
                 <div class="credential-container">
                     <input type="text" id="username" name="username" placeholder="username" required>
                     <input type="password" id="password" name="password" placeholder="password" required>
                 </div>
+                <button id="login-button" type="submit">Login</button>
             </form>
         </div>
     </div>
@@ -27,14 +28,14 @@
                     GIORNALE 2D MATTEI
                 </a>
             </h1>
-    
+            
             <div class="ham-menu" role="button" aria-label="Toggle menu">
                 <span class="1"></span>
                 <span class="2"></span>
                 <span class="3"></span>
             </div>
         </div>
-    
+        
         <div class="off-screen-menu">
             <ul class="off-screen-menu-list">
                 <li><button id="aggiungi-articolo">aggiungi_articolo</button></li>
@@ -42,13 +43,13 @@
                 <li></li>
             </ul>
         </div>
-    
+        
         <div class="nav-bar">
             <a href="">cronaca nera</a>
             <a href="">sport</a>
             <a href="">ecc</a>
         </div>
-    
+        
         <div class="article-container">
             
         </div>
