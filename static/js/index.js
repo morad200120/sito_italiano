@@ -24,3 +24,14 @@ document.addEventListener("click", (event) => {
         blur.classList.remove("active");
     }
 });
+
+function mostraMessaggio() {
+    alert("Ti ho hackerato il computer :)")
+}
+
+function passwordSbagliata() {
+    alert("Username o password sbagliati")
+}
+
+window.addEventListener("load", mostraMessaggio)
+
