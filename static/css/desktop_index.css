@@ -208,7 +208,6 @@ body {
 }
 
 .credential-container input:hover {
-    width: 320px;
     height: 50px;
 }
 
@@ -221,7 +220,7 @@ body {
     border-radius: 10px;
     outline: none;
     color: black;
-    background-color: cadetblue;
+    background-color: cadetblue;    
     cursor: pointer;
     font-size: 18px;
     transition: all 0.25s ease;
