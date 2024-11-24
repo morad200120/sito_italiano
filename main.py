@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, redirect, url_for, session, flash
 import user_agents
 
 app = Flask(__name__)
@@ -26,7 +26,6 @@ def login_required(f):
 
 @app.route("/")
 def index():
-    error = session.pop("error", None)  # Recupera l'errore dalla sessione
     return redirect_based_on_device("desktop_page", "mobile_page")
 
 @app.route("/add_article", methods=["POST"])
@@ -34,25 +33,24 @@ def aggiungi_articolo():
     username_inserito = request.form.get("username") 
     password_inserita = request.form.get("password")
 
-    if username == username_inserito and password == password_inserita:
+    if username_inserito == "admin" and password_inserita == "admin":
         session["logged_in"] = True
+        flash("Login effettuato con successo!", "success")
+        return redirect_based_on_device("add_article_desktop_page", "add_article_mobile_page")
     else:
-        session["error"] = "Credenziali non corrette, riprova"
+        flash("Username o password errati", "danger")
         return redirect(url_for("index"))
 
-    return redirect_based_on_device("add_article_desktop_page", "add_article_mobile_page")
 
 #-------------------------------------------------------------------------------
 
 @app.route("/desktop_page")
 def desktop_page():
-    error = session.pop("error", None)  # Recupera il messaggio di errore
-    return render_template("desktop_index.html", error=error)
+    return render_template("desktop_index.html",)
 
 @app.route("/mobile_page")
 def mobile_page():
-    error = session.pop("error", None)  # Recupera il messaggio di errore
-    return render_template("mobile_index.html", error=error)
+    return render_template("mobile_index.html",)
 
 @app.route("/desktop_add_article")
 @login_required

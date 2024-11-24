@@ -238,3 +238,15 @@ body {
 #login-form {
     height: 150px
 }
+
+
+#error-message {
+    position: relative;
+    bottom: 37px;
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+#error-message:active {
+    opacity: 1;
+}

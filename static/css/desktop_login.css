@@ -56,5 +56,9 @@ body {
     
 }
 
+.alert {
+    position: relative;
+    top: 100px;
+}
 
 
