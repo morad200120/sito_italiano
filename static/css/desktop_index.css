@@ -242,11 +242,10 @@ body {
 
 #error-message {
     position: relative;
-    bottom: 37px;
-    opacity: 0;
-    transition: opacity 0.5s;
+    top: 17px;
+    transition: opacity 0.5s; /* Transizione per il cambiamento di opacità */
 }
 
-#error-message:active {
-    opacity: 1;
+#error-message.active {
+    opacity: 1; /* Mostra il messaggio quando la classe "active" è presente */
 }

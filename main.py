@@ -19,7 +19,7 @@ def login_required(f):
         if not session.get("logged_in"):
             return redirect(url_for("index"))
         return f(*args, **kwargs)
-    wrap.__name__ = f.__name__  # Mantiene il nome originale della funzione
+    wrap.__name__ = f.__name__
     return wrap
 
 #-------------------------------------------------------------------------------
@@ -33,13 +33,12 @@ def aggiungi_articolo():
     username_inserito = request.form.get("username") 
     password_inserita = request.form.get("password")
 
-    if username_inserito == "admin" and password_inserita == "admin":
+    if username_inserito == username and password_inserita == password:
         session["logged_in"] = True
-        flash("Login effettuato con successo!", "success")
         return redirect_based_on_device("add_article_desktop_page", "add_article_mobile_page")
     else:
-        flash("Username o password errati", "danger")
-        return redirect(url_for("index"))
+        session["logged_in"] = False
+        return redirect_based_on_device("desktop_page", "mobile_page",)
 
 
 #-------------------------------------------------------------------------------

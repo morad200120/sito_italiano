@@ -24,3 +24,27 @@ document.addEventListener("click", (event) => {
         blur.classList.remove("active");
     }
 });
+
+
+const mainForm = document.getElementById("login-form");
+
+mainForm.onsubmit = function(event) {
+    event.preventDefault();
+
+    const username = "admin";
+    const password = "admin";
+
+    const usernameInserito = document.getElementsByName("username")[0].value;
+    const passwordInserita = document.getElementsByName("password")[0].value;
+
+    const errorMessage = document.getElementById("error-message");
+
+    if (usernameInserito !== username || passwordInserita !== password) {
+        errorMessage.classList.add("active"); // Aggiunge la classe "active" per mostrare l'errore
+        return false; 
+    }
+
+    errorMessage.classList.remove("active"); // Rimuove l'errore se le credenziali sono corrette
+    mainForm.submit(); // Procede con l'invio del form
+};
+
