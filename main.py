@@ -1,11 +1,18 @@
 from flask import Flask, render_template, request, redirect, url_for, session, flash
+from flask_talisman import Talisman
+from werkzeug.security import generate_password_hash, check_password_hash
 import user_agents
 
 app = Flask(__name__)
+Talisman(app)
 app.secret_key = "s2f2h4*%!)81l#-nirpxe#*fd9-!+=&)0$ix=!8do%zot**z-p"
 
+
 username = "admin"
-password = "admin"
+hashed_password = generate_password_hash("admin", method="pbkdf2:sha256", salt_length=8)
+
+
+
 
 #-------------------------------------------------------------------------------
 
@@ -30,15 +37,16 @@ def index():
 
 @app.route("/add_article", methods=["POST"])
 def aggiungi_articolo():
-    username_inserito = request.form.get("username") 
+    username_inserito = request.form.get("username")
     password_inserita = request.form.get("password")
 
-    if username_inserito == username and password_inserita == password:
+    if username_inserito == username and check_password_hash(hashed_password, password_inserita):
         session["logged_in"] = True
         return redirect_based_on_device("add_article_desktop_page", "add_article_mobile_page")
     else:
         session["logged_in"] = False
-        return redirect_based_on_device("desktop_page", "mobile_page",)
+        flash("Username o password errati", "error")
+        return redirect(url_for("index"))
 
 
 #-------------------------------------------------------------------------------

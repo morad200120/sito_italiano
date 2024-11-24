@@ -243,6 +243,7 @@ body {
 #error-message {
     position: relative;
     top: 17px;
+    opacity: 0;
     transition: opacity 0.5s; /* Transizione per il cambiamento di opacità */
 }
 
