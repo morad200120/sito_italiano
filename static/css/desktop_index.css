@@ -209,7 +209,7 @@ body {
 }
 
 .credential-container input:hover {
-    height: 50px;
+    transform: scale(1.1);
 }
 
 #login-button {
@@ -229,15 +229,17 @@ body {
 }
 
 #login-button:hover {
-    width: 100px;
-    height: 55px;
+    transform: scale(1.2);
     background-color: darkcyan;
     border-radius: 15px;
 }
 
+
 #login-form {
-    height: 150px
+    height: 100px;
 }
+
+
 
 
 #error-message {
