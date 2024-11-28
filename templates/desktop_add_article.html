@@ -5,10 +5,10 @@
     <title>Document</title>
 </head>
 <body>
-    <div action="/upload_image" method="POST" enctype="multipart/form-data" id="image-form">
-        <form action="/upload_image" method="POST" enctype="multipart/form-data">
-            <input type="file" name="image" id="image-input" accept="image/*" required>
-            <button type="submit">Upload Image</button>
+    <div class="form-container">
+        <form action="POST" id="file-form">
+            <input type="file" name="image" id="image-input" required>
+            <button type="submit">Uppload</button>
         </form>
     </div>
 </body>

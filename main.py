@@ -79,22 +79,6 @@ def add_article_desktop_page():
 def add_article_mobile_page():
     return render_template("mobile_add_article.html")
 
-@app.route('/upload_image', methods=['POST'])
-def upload_image():
-    if 'image' not in request.files:
-        return 'No file part', 400
-    image = request.files['image']
-    if image.filename == '':
-        return 'No selected file', 400
-    image_data = image.read()
-    cursor.execute("""
-        CREATE TABLE images
-        INSERT INTO images (image_name, image_data) 
-        VALUES (%s, %s)
-    """, (image.filename, image_data))
-    conn.commit()
-    return f"Image {image.filename} uploaded and saved to the database!", 200
-
 #-------------------------------------------------------------------------------
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=8080)
