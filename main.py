@@ -2,6 +2,19 @@ from flask import Flask, render_template, request, redirect, url_for, session, f
 from flask_talisman import Talisman
 from werkzeug.security import generate_password_hash, check_password_hash
 import user_agents
+import mysql.connector
+
+conn = mysql.connector.connect(
+    host = "localhost",
+    user = "root",
+    password = "",
+    database = "database_sito_italiano"
+)
+
+cursor = conn.cursor()
+
+
+
 
 app = Flask(__name__)
 Talisman(app)
