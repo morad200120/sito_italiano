@@ -1,0 +1,5 @@
+{
+    "dataworkspace.excludedProjects": [
+        "database_sito_italiano/database_sito_italiano.sqlproj"
+    ]
+}
