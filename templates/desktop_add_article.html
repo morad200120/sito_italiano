@@ -5,8 +5,11 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>
-        add article desktop
-    </h1>
+    <div action="/upload_image" method="POST" enctype="multipart/form-data" id="image-form">
+        <form action="/upload_image" method="POST" enctype="multipart/form-data">
+            <input type="file" name="image" id="image-input" accept="image/*" required>
+            <button type="submit">Upload Image</button>
+        </form>
+    </div>
 </body>
 </html>

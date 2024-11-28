@@ -13,8 +13,7 @@ conn = mysql.connector.connect(
 
 cursor = conn.cursor()
 
-
-
+#-------------------------------------------------------------------------------
 
 app = Flask(__name__)
 Talisman(app)
@@ -23,8 +22,6 @@ app.secret_key = "s2f2h4*%!)81l#-nirpxe#*fd9-!+=&)0$ix=!8do%zot**z-p"
 
 username = "admin"
 hashed_password = generate_password_hash("admin", method="pbkdf2:sha256", salt_length=8)
-
-
 
 
 #-------------------------------------------------------------------------------
@@ -81,6 +78,22 @@ def add_article_desktop_page():
 @login_required
 def add_article_mobile_page():
     return render_template("mobile_add_article.html")
+
+@app.route('/upload_image', methods=['POST'])
+def upload_image():
+    if 'image' not in request.files:
+        return 'No file part', 400
+    image = request.files['image']
+    if image.filename == '':
+        return 'No selected file', 400
+    image_data = image.read()
+    cursor.execute("""
+        CREATE TABLE images
+        INSERT INTO images (image_name, image_data) 
+        VALUES (%s, %s)
+    """, (image.filename, image_data))
+    conn.commit()
+    return f"Image {image.filename} uploaded and saved to the database!", 200
 
 #-------------------------------------------------------------------------------
 if __name__ == "__main__":
