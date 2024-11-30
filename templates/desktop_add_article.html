@@ -2,13 +2,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/desktop_add_article.css">
     <title>Document</title>
 </head>
 <body>
     <div class="form-container">
-        <form action="POST" id="file-form">
+        <form action="/submit_article" method="POST" enctype="multipart/form-data" id="file-form">
+            <input type="text" name="title" id="title-input" placeholder="scrivi il titolo" required>
+            <input type="url" name="url" id="url-input" placeholder="scrivi l'url dell'articolo creato su wordpress" required>
+            <select name="genere" id="genere-input" required>
+                <option value="" disabled selected>Seleziona un'opzione</option>
+                <option value="cronaca-nera">cronaca-nera</option>
+                <option value="sport">sport</option>
+            </select>
             <input type="file" name="image" id="image-input" required>
-            <button type="submit">Uppload</button>
+            <button type="submit">Carica articolo</button>
         </form>
     </div>
 </body>
