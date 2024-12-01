@@ -8,30 +8,34 @@ import os
 from datetime import timedelta
 import logging
 
-conn = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    password="",
-    database="database_sito_italiano"
-)
-cursor = conn.cursor()
+def get_database_connection():
+    try:
+        conn = mysql.connector.connect(
+            host="localhost",
+            user="root",
+            password="",
+            database="database_sito_italiano"
+        )
+        return conn
+    except mysql.connector.Error as err:
+        flash(f"Errore di connessione al database: {err}", "error")
+        return None
 
 app = Flask(__name__)
 Talisman(app)
 app.secret_key = "s2f2h4*%!81l#-nirpxe#*fd9-!+=&0$ix=!8do%zot**z-p"
 
-# Configura la cartella di upload per le immagini
-app.config["UPLOAD_FOLDER"] = "static/immagini_caricate"  # Cartella di upload separata
-os.makedirs(app.config["UPLOAD_FOLDER"], exist_ok=True)  # Assicurati che la cartella esista
-app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # Limita la dimensione a 16 MB
 
-# Configura il logging
+app.config["UPLOAD_FOLDER"] = "static/immagini_caricate"  
+os.makedirs(app.config["UPLOAD_FOLDER"], exist_ok=True)  
+app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  
+
+
 logging.basicConfig(level=logging.DEBUG)
 
-# Definisci estensioni consentite
+
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
-# Funzione per controllare le estensioni dei file
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
@@ -63,52 +67,74 @@ def index():
 
 @app.route("/add_article", methods=["POST"])
 def aggiungi_articolo():
-    username_inserito = request.form.get("username")
-    password_inserita = request.form.get("password")
+    if request.method == "POST":
+        username_inserito = request.form.get("username")
+        password_inserita = request.form.get("password")
 
-    if username_inserito == username and check_password_hash(hashed_password, password_inserita):
-        session["logged_in"] = True
-        return redirect_based_on_device("add_article_desktop_page", "add_article_mobile_page")
-    else:
-        session["logged_in"] = False
-        return redirect(url_for("index"))
+        if username_inserito == username and check_password_hash(hashed_password, password_inserita):
+            session["logged_in"] = True
+            return redirect_based_on_device("add_article_desktop_page", "add_article_mobile_page")
+        else:
+            session["logged_in"] = False
+            return redirect(url_for("index"))
+
 
 @app.route("/submit_article", methods=["POST"])
 def submit_article():
-    title = request.form["title"]
-    url = request.form["url"]
-    genere = request.form["genere"]
+
+    conn = get_database_connection()
+    if conn is None:
+        return redirect_based_on_device("add_article_desktop_page", "add_article_mobile_page")
     
-    image = request.files["image"]
-    
-    image_path = None
-    if image:
-        if image.filename != '' and allowed_file(image.filename):
-            # Proteggi il nome del file
-            filename = secure_filename(image.filename)
-            # Salva l'immagine nella cartella di upload
-            image_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-            image.save(image_path)
-        else:
-            flash("Tipo di file non supportato. Carica un'immagine.", "error")
-            return redirect(request.url)
-    
+    title = request.form.get("title", "").strip()
+    url = request.form.get("url", "").strip()
+    genere = request.form.get("genere", "").strip()
+    image = request.files.get("image")
+
+
+    if not title or not url or not genere or not image:
+        flash("Tutti i campi sono obbligatori!", "error")
+        return redirect_based_on_device("add_article_desktop_page", "add_article_mobile_page")
+
+    if image.filename == '':
+        flash("Nessun file selezionato!", "error")
+        return redirect_based_on_device("add_article_desktop_page", "add_article_mobile_page")
+
+
+    if not allowed_file(image.filename):
+        flash("Tipo di file non consentito! Carica un'immagine valida (png, jpg, jpeg, gif).", "error")
+        return redirect_based_on_device("add_article_desktop_page", "add_article_mobile_page")
+
+
+    image_filename = secure_filename(image.filename)
+    image_path = os.path.join(app.config['UPLOAD_FOLDER'], image_filename)
+
+
     try:
+        image.save(image_path)
+    except Exception as e:
+        flash(f"Errore nel salvataggio dell'immagine: {e}", "error")
+        return redirect_based_on_device("add_article_desktop_page", "add_article_mobile_page")
+
+    # Tenta di inserire i dati nel database
+    try:
+        cursor = conn.cursor()
         query = """
         INSERT INTO articoli (title, url, genere, image_path)
         VALUES (%s, %s, %s, %s)
         """
-        cursor.execute(query, (title, url, genere, filename if image else None))
-        conn.commit()  # Salva le modifiche nel database
+        cursor.execute(query, (title, url, genere, image_filename))
+        conn.commit()
     except mysql.connector.Error as e:
-        conn.rollback()  # Fai il rollback in caso di errore
-        flash(f"Errore nel salvataggio dell'articolo: {e}", "error")
-        return redirect(request.url)
+        conn.rollback()
+        flash(f"Errore nel salvataggio dell'articolo contattami o riprova fra qualche minuto: {e}", "error")
+        return redirect_based_on_device("add_article_desktop_page", "add_article_mobile_page")
     finally:
-        cursor.close()  # Chiudi il cursore
-        conn.close()    # Chiudi la connessione al database
+        cursor.close()
+        conn.close()
 
-    return redirect(url_for("index"))
+    flash("Articolo caricato con successo!", "success")
+    return redirect_based_on_device("desktop_page", "mobile_page")
 
 #-------------------------------------------------------------------------------
 
