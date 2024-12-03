@@ -28,6 +28,7 @@ document.addEventListener("click", (event) => {
 
 const mainForm = document.getElementById("login-form");
 
+
 mainForm.onsubmit = function(event) {
     event.preventDefault();
 
@@ -40,11 +41,11 @@ mainForm.onsubmit = function(event) {
     const errorMessage = document.getElementById("error-message");
 
     if (usernameInserito !== username || passwordInserita !== password) {
-        errorMessage.classList.add("active"); // Aggiunge la classe "active" per mostrare l'errore
+        errorMessage.classList.add("active"); 
         return false; 
     }
 
-    errorMessage.classList.remove("active"); // Rimuove l'errore se le credenziali sono corrette
-    mainForm.submit(); // Procede con l'invio del form
+    errorMessage.classList.remove("active");
+    mainForm.submit(); 
 };
 

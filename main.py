@@ -84,6 +84,7 @@ def submit_article():
 
     conn = get_database_connection()
     if conn is None:
+        flash("Connessione al database fallita, contattami o  riprova fra un po", "error")
         return redirect_based_on_device("add_article_desktop_page", "add_article_mobile_page")
     
     title = request.form.get("title", "").strip()
@@ -116,14 +117,13 @@ def submit_article():
         flash(f"Errore nel salvataggio dell'immagine: {e}", "error")
         return redirect_based_on_device("add_article_desktop_page", "add_article_mobile_page")
 
-    # Tenta di inserire i dati nel database
     try:
         cursor = conn.cursor()
         query = """
         INSERT INTO articoli (title, url, genere, image_path)
         VALUES (%s, %s, %s, %s)
         """
-        cursor.execute(query, (title, url, genere, image_filename))
+        cursor.execute(query, (title, url, genere, image_path))
         conn.commit()
     except mysql.connector.Error as e:
         conn.rollback()
