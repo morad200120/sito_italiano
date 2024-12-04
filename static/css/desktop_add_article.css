@@ -1,5 +1,6 @@
 * {
-    margin: 0;
+    padding: 0px;
+    margin: 0px;
     box-sizing: border-box;
 }
 
@@ -15,9 +16,14 @@ body {
 
 .form-container {
     border-radius: 15px;
-    border: solid 1px blue;
+    border: solid 3px black;
+    box-shadow: 0 4px 100px rgba(0, 0, 0, 0.3);
     width: 25%;
     height: 50%;
+    transition: all 0.3s ease;
+}
+.form-container:hover{
+    transform: scale(1.15);
 }
 
 #file-form {
@@ -30,18 +36,44 @@ body {
     text-align: center;
 }
 
-
-#file-form [id$="input"] {
-    display: flex;
-    text-align: center;
-    width: 275px;
-    border-radius: 10px;
-    padding: 10px;
-    outline: none;
-    border: solid 1px black
-}
-
-.flash_messages {
+.flash-messages {
     font-size: 16px;
     font-family: sans-serif;
+}
+
+.input-group.mb-3 {
+    width: 50%;
+    height: 45px;
+    transition: all 0.3s ease-out;
+}
+.input-group.mb-3:hover {
+    transform: scale(1.1);
+}
+
+#inputGroupSelect01 {
+    width: 50%;
+    height: 45px;
+    transition: all 0.3s ease-out;
+}
+#inputGroupSelect01:hover {
+    transform: scale(1.1);
+}
+
+#file-selector {
+    width: 50%;
+    height: 45px;
+    transition: all 0.3s ease-out;
+}
+#file-selector:hover {
+    transform: scale(1.1);
+}
+
+#submit-button {
+    height: 50px;
+    width: 125px;
+    border-radius: 20px;
+    transition: all 0.3s ease-out;
+}
+#submit-button:hover {
+    transform: scale(1.1);
 }
